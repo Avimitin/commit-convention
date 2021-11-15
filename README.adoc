@@ -1,5 +1,5 @@
 = Avimitin's Commit Convention {Version}
-:Version: 0.0.1-draft
+:Version: 0.0.3
 
 A commit convention which keep simplicity and version mark.
 
@@ -52,6 +52,10 @@ Title is really important. For developer, you can generate change log and
 semantic version by `git log --oneline`. For user, they can know if the
 developer made any important changes. So a proper title helps all the
 people.
+
+=== length
+
+Title should be wrap in 50 Latin characters.
 
 === type
 
@@ -111,6 +115,10 @@ in the body section. And you should write down what you have done and
 why you did this. Don't write about how you do this.
 
 If you are woring on a new PR, remember to attach the issue ID and PR ID.
+
+=== length
+
+Title should be wrap in 50 Latin characters.
 
 == Footer
 
