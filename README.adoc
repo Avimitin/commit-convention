@@ -1,0 +1,151 @@
+= Avimitin's Commit Convention {Version}
+:Version: 0.0.1-draft
+
+A commit convention which keep simplicity and version mark.
+
+== Format
+
+----
+[!]<type>|[module]: <description> # <1>
+
+[body]
+
+[footer]
+----
+
+<1> Contents in the curly bracket is optional.
+
+:cclink: https://www.conventionalcommits.org/en/v1.0.0/
+This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
+the long commit type. I don't want the "refactor(scope)" text or other
+type text ocupy so much space.
+
+As the conventional commits 1.0.0 use lower case letter in title, I fix
+the giant text with the below convention:
+
+* N: A new feature, equal to `feat`
+* F: A fix commit, equal to `fix`
+* R: A refactor commit, equal to `refactor`
+* C: A commit don't affect the main code, equal to `chore/docs/ci...etc`
+
+So after this new design, the commit message will be like:
+
+.Example
+----
+N|socket: implement new API read
+R|buffer: reduce the write_buf() complexity to O(n)
+F|io/net: fix CVE-2021-9999
+!R|lib/crypto: drop the SHA-1 library support
+C|readme: add guideline for using docker build
+----
+
+== Title
+
+Title is really important. For developer, you can generate change log and
+semantic version by `git log --oneline`. For user, they can know if the
+developer made any important changes. So a proper title helps all the
+people.
+
+=== type
+
+Use `N` type when you implement new API or import a new library. Use `F`
+type when you fix a bug. Use the `R` type when you modify existing code.
+And use `C` when you edit a document, docker file, CI file or anything
+else that will not change the main code.
+
+=== module
+
+Except the type mark, all the text in title should be lower case. If the
+module contains upper case like `README` or `TCP`, convert them to lower
+case. If you have module named like `ipParser`, convert them to snake case
+like `ip_parser`.
+
+=== description
+
+The first word of the title *should* be lower case and *must* be a verb.
+Don't end with a period and don't attach any tense on it. You *must* write
+the commit in the imperative.
+
+For example:
+
+.This is good
+----
+R|subsystem: refactor subsystem X for readability
+C|readme: update getting started documentation
+!R|api: remove deprecated methods
+C|release version 1.0.0
+----
+
+.And this is bad
+----
+F|fixed bug with Y              ==> don't use tense
+R|changing behavior of X        ==> don't use tense
+F|more fixes for broken stuff   ==> use verb to make order
+N|sweet new API methods         ==> there is no verb
+----
+
+A rule of thumb is to fill this sentence:
+"This patch will modify the project to...".
+
+For example:
+* This patch will modify the project to refactor subsystem X for readability
+* This patch will modify the project to update getting started documentation
+* This patch will modify the project to remove deprecated methods
+* This patch will modify the project to release version 1.0.0
+
+So now the none-imperative commit are not working:
+* This patch will modify the project to fixed bug with Y
+* This patch will modify the project to changing behavior of X
+* This patch will modify the project to more fixes for broken stuff
+* This patch will modify the project to sweet new API methods
+
+== Body
+
+Body is optional. You can use any markup language that is well-knowing
+in the body section. And you should write down what you have done and
+why you did this. Don't write about how you do this.
+
+If you are woring on a new PR, remember to attach the issue ID and PR ID.
+
+== Footer
+
+Footer should contains all the collaborators's name and email. If someone
+mention a bug, attach "Reported-by: Tom <\Tom@example.com>". If someone
+help you test the code, attach "Tested-by: Sam <\Sam@example.com>".
+
+If you are using GPG to sign your commit, you can attach your name at the end
+of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
+
+== Full Example
+
+----
+F|popup/push: fix push elsewhere
+
+The original function contains two bugs. The first is that it didn't
+pass popup arguments. Because of this, no state was found when
+refreshing the status.
+
+Secondly, the git.branch.prompt_for_branch API needs a list of branches
+to test if arguments are contained in options. But the original code
+just calls it without any arguments. I don't know what arguments should
+be passed into it. Keep using input.get_user_input is my current
+workaround.
+
+Fixes: #233
+
+Signed-off-by: Avimitin <avimitin@gmail.com>
+----
+
+== Credit
+
+This convention is inspired by the below project:
+
+* Simplistic Commits: https://github.com/bnoctis/simplistic-commits
+* Conventional Commits: https://www.conventionalcommits.org/en/v1.0.0/
+* How to write commit message: https://chris.beams.io/posts/git-commit/
+
+== License
+
+https://creativecommons.org/licenses/by/4.0/[CC-BY-4.0]
+
+(c) 2021 Avimitin
