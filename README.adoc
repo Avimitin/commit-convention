@@ -1,5 +1,5 @@
 = Avimitin's Commit Convention {Version}
-:Version: 0.1.0
+:Version: 0.1.1
 
 A commit convention which keep simplicity and version mark.
 
@@ -32,6 +32,7 @@ the giant text with the below convention:
 * F: A fix commit, equal to `fix`
 * R: A refactor commit, equal to `refactor`
 * C: A commit don't affect the main code, equal to `chore/docs/ci...etc`
+* Attach `!` after the type if the commit contains breaking change.
 
 So after this new design, the commit message will be like:
 
@@ -118,6 +119,10 @@ why you did this. Don't write about how you do this.
 
 If you are woring on a new PR, remember to attach the issue ID and PR ID.
 
+Also if this commit contains breaking change, remember to attach
+`BREAKING CHANGE:` to told what has been change at the end of the body
+section. See the section "Full Example" for details.
+
 === length
 
 Title should be wrap in 50 Latin characters.
@@ -134,7 +139,7 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ----
-F/popup/push: fix push elsewhere
+F!/popup/push: fix push elsewhere
 
 The original function contains two bugs. The first is that it didn't
 pass popup arguments. Because of this, no state was found when
@@ -145,6 +150,10 @@ to test if arguments are contained in options. But the original code
 just calls it without any arguments. I don't know what arguments should
 be passed into it. Keep using input.get_user_input is my current
 workaround.
+
+BREAKING CHANGE:
+* git.branch.get_local_branches is now private
+* git.branch.prompt_for_branch is now private
 
 Fixes: #233
 
