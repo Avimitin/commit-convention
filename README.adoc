@@ -3,6 +3,13 @@
 
 A commit convention which keep simplicity and version mark.
 
+== Template usage
+
+----
+git clone https://github.com/Avimitin/commit-convention.git
+git config --global commit.template $PWD/commit-convention/template.txt
+----
+
 == Format
 
 ----
