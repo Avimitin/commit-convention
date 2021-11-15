@@ -68,15 +68,14 @@ the commit in the imperative.
 
 For example:
 
-.This is good
+This is good::
 ----
 R|subsystem: refactor subsystem X for readability
 C|readme: update getting started documentation
 !R|api: remove deprecated methods
 C|release version 1.0.0
 ----
-
-.And this is bad
+And this is bad::
 ----
 F|fixed bug with Y              ==> don't use tense
 R|changing behavior of X        ==> don't use tense
@@ -87,13 +86,12 @@ N|sweet new API methods         ==> there is no verb
 A rule of thumb is to fill this sentence:
 "This patch will modify the project to...".
 
-For example:
+Good Example::
 * This patch will modify the project to refactor subsystem X for readability
 * This patch will modify the project to update getting started documentation
 * This patch will modify the project to remove deprecated methods
 * This patch will modify the project to release version 1.0.0
-
-So now the none-imperative commit are not working:
+So now the none-imperative commit are not working::
 * This patch will modify the project to fixed bug with Y
 * This patch will modify the project to changing behavior of X
 * This patch will modify the project to more fixes for broken stuff
