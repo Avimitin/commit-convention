@@ -1,5 +1,5 @@
 = Avimitin's Commit Convention {Version}
-:Version: 0.0.3
+:Version: 0.1.0
 
 A commit convention which keep simplicity and version mark.
 
@@ -13,21 +13,19 @@ git config --global commit.template $PWD/commit-convention/template.txt
 == Format
 
 ----
-[!]<type>|[module]: <description> # <1>
+<type>[!][/][module]: <description>
 
 [body]
 
 [footer]
 ----
 
-<1> Contents in the curly bracket is optional.
-
 :cclink: https://www.conventionalcommits.org/en/v1.0.0/
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
 the long commit type. I don't want the "refactor(scope)" text or other
 type text ocupy so much space.
 
-As the conventional commits 1.0.0 use lower case letter in title, I fix
+As the conventional commits 1.0.0 use lower case letter in title, I replace
 the giant text with the below convention:
 
 * N: A new feature, equal to `feat`
@@ -39,12 +37,16 @@ So after this new design, the commit message will be like:
 
 .Example
 ----
-N|socket: implement new API read
-R|buffer: reduce the write_buf() complexity to O(n)
-F|io/net: fix CVE-2021-9999
-!R|lib/crypto: drop the SHA-1 library support
-C|readme: add guideline for using docker build
+N/socket: implement new API read
+R/buffer: reduce the write_buf() complexity to O(n)
+F/io/net: fix CVE-2021-9999
+R!/lib/crypto: drop the SHA-1 library support
+C/readme: add guideline for using docker build
+N: implement new module parser
 ----
+
+I choose the `/` as divider. It is optional. And it can integrate with module
+path. It helps generate a clearer oneline git commit history.
 
 == Title
 
@@ -81,17 +83,17 @@ For example:
 
 This is good::
 ----
-R|subsystem: refactor subsystem X for readability
-C|readme: update getting started documentation
-!R|api: remove deprecated methods
-C|release version 1.0.0
+R/subsystem: refactor subsystem X for readability
+C/readme: update getting started documentation
+R!/api: remove deprecated methods
+C/release version 1.0.0
 ----
 And this is bad::
 ----
-F|fixed bug with Y              ==> don't use tense
-R|changing behavior of X        ==> don't use tense
-F|more fixes for broken stuff   ==> use verb to make order
-N|sweet new API methods         ==> there is no verb
+F/fixed bug with Y              ==> don't use tense
+R/changing behavior of X        ==> don't use tense
+F/more fixes for broken stuff   ==> use verb to make order
+N/sweet new API methods         ==> there is no verb
 ----
 
 A rule of thumb is to fill this sentence:
@@ -132,7 +134,7 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ----
-F|popup/push: fix push elsewhere
+F/popup/push: fix push elsewhere
 
 The original function contains two bugs. The first is that it didn't
 pass popup arguments. Because of this, no state was found when

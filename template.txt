@@ -1,4 +1,4 @@
-# Format: [!]<type>|[module: ]descriptions
+# Format: <type>[!][/][modules]: descriptions
 # Available type option
 # N means new features  # R means refactor
 # F means a new fix     # C means chore
