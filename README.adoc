@@ -1,12 +1,13 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.1.2
+:version: 0.1.3
 :sectnums:
-:toc:
+:toc: left
 // cite
 :github-url: https://github.com/Avimitin/commit-convention
 :cclink: https://www.conventionalcommits.org/en/v1.0.0/
+:asciidoc-homepage: https://asciidoctor.org/
 
 Avimitin's commit convention is a commit style that keep simplicity and semantic
 version marker.
@@ -21,9 +22,8 @@ version marker.
 [footer]
 ----
 
-____
+[quote,]
 Component in `[]` means optional, other are musted.
-____
 
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
 the long commit type.
@@ -123,6 +123,8 @@ So now the none-imperative commit are not working::
 
 == Body
 
+=== General
+
 Body is optional. You can use any markup language that is well-knowing
 in the body section. And you should write down what you have done and
 why you did this. Don't write about how you do this.
@@ -133,9 +135,63 @@ Also if this commit contains breaking change, remember to attach
 `BREAKING CHANGE:` to told what has been change at the end of the body
 section. See the section "Full Example" for details.
 
-=== length
+=== Recommend format
 
-Title should be wrap in 50 Latin characters.
+I recommend using the asciidoc format.
+It is a powerful markup language.
+You can learn it from the {asciidoc-homepage}[asciidoc document].
+
+"Use AsciiDoc for document markup.
+Really.
+It's actually readable by humans,
+ easier to parse and way more flexible than XML."
+-- Linux Torvalds
+
+However, I only recommend you to use the basic asciidoc format.
+Don't use too much asciidoc syntax.
+It will confused other user.
+My daily practice are listed below:
+
+[pass]
+<details>
+<summary>Click to expand!</summary>
+....
+= Section
+
+`short code`
+
+[rust]
+----
+code block
+----
+
+* item 1
+* item 2
+
+{ref}[url]
+
+:ref: https://github.com/Avimitin/commit-convention
+....
+[pass]
+</details>
+
+The most useful feature of the asciidoc format for our commit is attribute.
+With this feature, you can put all the links at the bottom of the commit,
+ and then reference it within the commit.
+It will prevent some super long URL from cluttering up the commit message.
+
+=== One Line Per Sentence
+
+Besides, I recommend using one line per sentence.
+Imaging you are editing a large paragraph, and you find yourself have syntax
+error at the previous sentences.
+You remove or add new word, it cause the editing line over 80 characters.
+So you have to edit the whole paragraph to fit in 80 characters per line.
+
+:one-sentence-per-line: https://rhodesmill.org/brandon/2012/one-sentence-per-line/
+So as you are using asciidoc format, I recommend you to use one line per
+sentence.
+You can read {one-sentence-per-line}[this article] to know more benefit you can gain.
 
 == Footer
 
@@ -149,23 +205,26 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ----
-F!/popup/push: fix push elsewhere
+F!/popup/push: fix action push elsewhere
 
-The original function contains two bugs. The first is that it didn't
-pass popup arguments. Because of this, no state was found when
-refreshing the status.
+= Major fixes
+First of all, the push elsewhere action fail to refresh pop up status.
+This is because it didn't pass the `popup` variable.
 
-Secondly, the git.branch.prompt_for_branch API needs a list of branches
-to test if arguments are contained in options. But the original code
-just calls it without any arguments. I don't know what arguments should
-be passed into it. Keep using input.get_user_input is my current
-workaround.
+Secondly, the `git.branch.prompt_for_branch()` function needs a list of
+branches to test if arguments are contained in options.
+But the original code just calls it without any arguments.
+So I provide `git.branch.get_all_branches()` to generate necessary
+arguments.
 
-BREAKING CHANGE:
+Besides, I truncate the unexpected git branch in commit {commit-link}[12f8e16].
+
+= BREAKING CHANGE:
 * git.branch.get_local_branches is now private
-* git.branch.prompt_for_branch is now private
 
 Fixes: #233
+
+:commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin <avimitin@gmail.com>
 ----
