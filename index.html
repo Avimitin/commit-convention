@@ -467,8 +467,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_footer">4. Footer</a></li>
 <li><a href="#_full_example">5. Full Example</a></li>
 <li><a href="#_template_usage">6. Template usage</a></li>
-<li><a href="#_credit">7. Credit</a></li>
-<li><a href="#_license">8. License</a></li>
+<li><a href="#_how_to_generate_changelogs">7. How to generate changelogs</a></li>
+<li><a href="#_credit">8. Credit</a></li>
+<li><a href="#_license">9. License</a></li>
 </ul>
 </div>
 </div>
@@ -813,7 +814,17 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credit">7. Credit</h2>
+<h2 id="_how_to_generate_changelogs">7. How to generate changelogs</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git log --oneline --pretty="format:%s" {RANGE} | sed 's/[A-Z]!*\/*//'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_credit">8. Credit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This convention is inspired by the below project:</p>
@@ -834,7 +845,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_license">8. License</h2>
+<h2 id="_license">9. License</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
@@ -847,7 +858,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-13 22:09:56 +0800
+Last updated 2021-12-13 22:35:28 +0800
 </div>
 </div>
 </body>

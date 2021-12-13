@@ -238,6 +238,13 @@ git clone https://github.com/Avimitin/commit-convention.git
 git config --global commit.template $PWD/commit-convention/template.txt
 ----
 
+== How to generate changelogs
+
+[source, bash]
+----
+git log --oneline --pretty="format:%s" {RANGE} | sed 's/[A-Z]!*\/*//'
+----
+
 == Credit
 
 This convention is inspired by the below project:
