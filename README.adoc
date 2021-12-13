@@ -23,7 +23,7 @@ version marker.
 ----
 
 [quote,]
-Component in `[]` means optional, other are musted.
+Component in `[]` means optional, other are required.
 
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
 the long commit type.
