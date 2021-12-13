@@ -5,7 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
-<title>Avimitin&#8217;s Commit Convention 0.1.1</title>
+<meta name="author" content="Avimitin">
+<title>Avimitin&#8217;s Commit Convention 0.1.2</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,29 +440,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.1.1</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.1.2</h1>
+<div class="details">
+<span id="author" class="author">Avimitin</span><br>
+<span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
+</div>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_format">1. Format</a></li>
+<li><a href="#_title">2. Title</a>
+<ul class="sectlevel2">
+<li><a href="#_length">2.1. length</a></li>
+<li><a href="#_type">2.2. type</a></li>
+<li><a href="#_module">2.3. module</a></li>
+<li><a href="#_description">2.4. description</a></li>
+</ul>
+</li>
+<li><a href="#_body">3. Body</a>
+<ul class="sectlevel2">
+<li><a href="#_length_2">3.1. length</a></li>
+</ul>
+</li>
+<li><a href="#_footer">4. Footer</a></li>
+<li><a href="#_full_example">5. Full Example</a></li>
+<li><a href="#_template_usage">6. Template usage</a></li>
+<li><a href="#_credit">7. Credit</a></li>
+<li><a href="#_license">8. License</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>A commit convention which keep simplicity and version mark.</p>
+<p>Avimitin&#8217;s commit convention is a commit style that keep simplicity and semantic
+version marker.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_template_usage">Template usage</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>git clone https://github.com/Avimitin/commit-convention.git
-git config --global commit.template $PWD/commit-convention/template.txt</pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_format">Format</h2>
+<h2 id="_format">1. Format</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -472,10 +491,17 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 [footer]</pre>
 </div>
 </div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Component in <code>[]</code> means optional, other are musted.</p>
+</div>
+</blockquote>
+</div>
 <div class="paragraph">
 <p>This is similar to the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits 1.0.0</a>, but it trim
-the long commit type. I don&#8217;t want the "refactor(scope)" text or other
-type text ocupy so much space.</p>
+the long commit type.
+I don&#8217;t want the "refactor(scope)" text or other type text ocupy so much space.</p>
 </div>
 <div class="paragraph">
 <p>As the conventional commits 1.0.0 use lower case letter in title, I replace
@@ -521,7 +547,7 @@ path. It helps generate a clearer oneline git commit history.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_title">Title</h2>
+<h2 id="_title">2. Title</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Title is really important. For developer, you can generate change log and
@@ -530,13 +556,13 @@ developer made any important changes. So a proper title helps all the
 people.</p>
 </div>
 <div class="sect2">
-<h3 id="_length">length</h3>
+<h3 id="_length">2.1. length</h3>
 <div class="paragraph">
 <p>Title should be wrap in 50 Latin characters.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_type">type</h3>
+<h3 id="_type">2.2. type</h3>
 <div class="paragraph">
 <p>Use <code>N</code> type when you implement new API or import a new library. Use <code>F</code>
 type when you fix a bug. Use the <code>R</code> type when you modify existing code.
@@ -545,7 +571,7 @@ else that will not change the main code.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_module">module</h3>
+<h3 id="_module">2.3. module</h3>
 <div class="paragraph">
 <p>Except the type mark, all the text in title should be lower case. If the
 module contains upper case like <code>README</code> or <code>TCP</code>, convert them to lower
@@ -554,7 +580,7 @@ like <code>ip_parser</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_description">description</h3>
+<h3 id="_description">2.4. description</h3>
 <div class="paragraph">
 <p>The first word of the title <strong>should</strong> be lower case and <strong>must</strong> be a verb.
 Don&#8217;t end with a period and don&#8217;t attach any tense on it. You <strong>must</strong> write
@@ -639,7 +665,7 @@ N/sweet new API methods         ==&gt; there is no verb</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_body">Body</h2>
+<h2 id="_body">3. Body</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Body is optional. You can use any markup language that is well-knowing
@@ -655,7 +681,7 @@ why you did this. Don&#8217;t write about how you do this.</p>
 section. See the section "Full Example" for details.</p>
 </div>
 <div class="sect2">
-<h3 id="_length_2">length</h3>
+<h3 id="_length_2">3.1. length</h3>
 <div class="paragraph">
 <p>Title should be wrap in 50 Latin characters.</p>
 </div>
@@ -663,7 +689,7 @@ section. See the section "Full Example" for details.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_footer">Footer</h2>
+<h2 id="_footer">4. Footer</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Footer should contains all the collaborators&#8217;s name and email. If someone
@@ -677,7 +703,7 @@ of the rooter like: "Signed-off-by: Yourname &lt;name@example.com&gt;".</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_full_example">Full Example</h2>
+<h2 id="_full_example">5. Full Example</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
@@ -705,7 +731,21 @@ Signed-off-by: Avimitin &lt;avimitin@gmail.com&gt;</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_credit">Credit</h2>
+<h2 id="_template_usage">6. Template usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You can use my commit template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/Avimitin/commit-convention.git
+git config --global commit.template $PWD/commit-convention/template.txt</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_credit">7. Credit</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This convention is inspired by the below project:</p>
@@ -726,7 +766,7 @@ Signed-off-by: Avimitin &lt;avimitin@gmail.com&gt;</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_license">License</h2>
+<h2 id="_license">8. License</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a></p>
@@ -739,7 +779,7 @@ Signed-off-by: Avimitin &lt;avimitin@gmail.com&gt;</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-08 16:36:49 +0800
+Last updated 2021-12-13 20:50:21 +0800
 </div>
 </div>
 </body>

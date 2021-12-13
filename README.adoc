@@ -1,14 +1,15 @@
-= Avimitin's Commit Convention {Version}
-:Version: 0.1.1
+= Avimitin's Commit Convention {version}
+Avimitin <avimitin@gmail.com>
+// attr
+:version: 0.1.2
+:sectnums:
+:toc:
+// cite
+:github-url: https://github.com/Avimitin/commit-convention
+:cclink: https://www.conventionalcommits.org/en/v1.0.0/
 
-A commit convention which keep simplicity and version mark.
-
-== Template usage
-
-----
-git clone https://github.com/Avimitin/commit-convention.git
-git config --global commit.template $PWD/commit-convention/template.txt
-----
+Avimitin's commit convention is a commit style that keep simplicity and semantic
+version marker.
 
 == Format
 
@@ -20,10 +21,13 @@ git config --global commit.template $PWD/commit-convention/template.txt
 [footer]
 ----
 
-:cclink: https://www.conventionalcommits.org/en/v1.0.0/
+____
+Component in `[]` means optional, other are musted.
+____
+
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
-the long commit type. I don't want the "refactor(scope)" text or other
-type text ocupy so much space.
+the long commit type.
+I don't want the "refactor(scope)" text or other type text ocupy so much space.
 
 As the conventional commits 1.0.0 use lower case letter in title, I replace
 the giant text with the below convention:
@@ -83,13 +87,16 @@ the commit in the imperative.
 For example:
 
 This is good::
+
 ----
 R/subsystem: refactor subsystem X for readability
 C/readme: update getting started documentation
 R!/api: remove deprecated methods
 C/release version 1.0.0
 ----
+
 And this is bad::
+
 ----
 F/fixed bug with Y              ==> don't use tense
 R/changing behavior of X        ==> don't use tense
@@ -101,11 +108,14 @@ A rule of thumb is to fill this sentence:
 "This patch will modify the project to...".
 
 Good Example::
+
 * This patch will modify the project to refactor subsystem X for readability
 * This patch will modify the project to update getting started documentation
 * This patch will modify the project to remove deprecated methods
 * This patch will modify the project to release version 1.0.0
+
 So now the none-imperative commit are not working::
+
 * This patch will modify the project to fixed bug with Y
 * This patch will modify the project to changing behavior of X
 * This patch will modify the project to more fixes for broken stuff
@@ -158,6 +168,15 @@ BREAKING CHANGE:
 Fixes: #233
 
 Signed-off-by: Avimitin <avimitin@gmail.com>
+----
+
+== Template usage
+
+You can use my commit template:
+
+----
+git clone https://github.com/Avimitin/commit-convention.git
+git config --global commit.template $PWD/commit-convention/template.txt
 ----
 
 == Credit
