@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.1.3</title>
+<title>Avimitin&#8217;s Commit Convention 0.2.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.1.3</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.2.0</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -487,7 +487,7 @@ version marker.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>&lt;type&gt;[!][/][module]: &lt;description&gt;
+<pre>&lt;type&gt;[!][,][component]: &lt;description&gt;
 
 [body]
 
@@ -496,7 +496,7 @@ version marker.</p>
 </div>
 <div class="quoteblock">
 <blockquote>
-Component in <code>[]</code> means optional, other are musted.
+Component in <code>[]</code> means optional, other are required.
 </blockquote>
 </div>
 <div class="paragraph">
@@ -511,16 +511,19 @@ the giant text with the below convention:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>N: A new feature, equal to <code>feat</code></p>
+<p>new: A new feature, equal to <code>feat</code>.</p>
 </li>
 <li>
-<p>F: A fix commit, equal to <code>fix</code></p>
+<p>fix: A fix commit, equal to <code>fix</code>.</p>
 </li>
 <li>
-<p>R: A refactor commit, equal to <code>refactor</code></p>
+<p>rft: A refactor commit, equal to <code>refactor</code>.</p>
 </li>
 <li>
-<p>C: A commit don&#8217;t affect the main code, equal to <code>chore/docs/ci&#8230;&#8203;etc</code></p>
+<p>chr: A commit don&#8217;t affect the main code, equal to <code>chore</code>.</p>
+</li>
+<li>
+<p>doc: A commit related to document stuff.</p>
 </li>
 <li>
 <p>Attach <code>!</code> after the type if the commit contains breaking change.</p>
@@ -533,17 +536,23 @@ the giant text with the below convention:</p>
 <div class="listingblock">
 <div class="title">Example</div>
 <div class="content">
-<pre>N/socket: implement new API read
-R/buffer: reduce the write_buf() complexity to O(n)
-F/io/net: fix CVE-2021-9999
-R!/lib/crypto: drop the SHA-1 library support
-C/readme: add guideline for using docker build
-N: implement new module parser</pre>
+<pre>new,socket: implement new API `read()`
+rft,buffer: reduce the write_buf() complexity to O(n)
+fix,io/net: fix CVE-2021-9999
+doc,readme: add guideline for using docker build
+
+# breaking change
+rft!,lib/crypto: drop the SHA-1 library support
+
+# module name can be ignored
+new: implement new module parser
+chr: reformat the code</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>I choose the <code>/</code> as divider. It is optional. And it can integrate with module
-path. It helps generate a clearer oneline git commit history.</p>
+<p>I choose the <code>,</code> as divider between prefix and component.
+It is optional. And it makes the title looks more straightforward.
+Besides, it helps generate a clearer oneline git commit history.</p>
 </div>
 </div>
 </div>
@@ -858,7 +867,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-13 22:35:28 +0800
+Last updated 2021-12-23 18:00:13 +0800
 </div>
 </div>
 </body>

@@ -1,7 +1,5 @@
-# Format: <type>[!][/][modules]: descriptions
-# Available type option
-# N means new features  # R means refactor
-# F means a new fix     # C means chore
+# Format: <type>[!][,][modules]: descriptions
+# Available type option: new/fix/rft/doc/chr
 # <---Title: one-line summary wrap at 50 chars--->:
 
 

@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.1.3
+:version: 0.2.0
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Format
 
 ----
-<type>[!][/][module]: <description>
+<type>[!][,][component]: <description>
 
 [body]
 
@@ -32,26 +32,33 @@ I don't want the "refactor(scope)" text or other type text ocupy so much space.
 As the conventional commits 1.0.0 use lower case letter in title, I replace
 the giant text with the below convention:
 
-* N: A new feature, equal to `feat`
-* F: A fix commit, equal to `fix`
-* R: A refactor commit, equal to `refactor`
-* C: A commit don't affect the main code, equal to `chore/docs/ci...etc`
+* new: A new feature, equal to `feat`.
+* fix: A fix commit, equal to `fix`.
+* rft: A refactor commit, equal to `refactor`.
+* chr: A commit don't affect the main code, equal to `chore`.
+* doc: A commit related to document stuff.
 * Attach `!` after the type if the commit contains breaking change.
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
-N/socket: implement new API read
-R/buffer: reduce the write_buf() complexity to O(n)
-F/io/net: fix CVE-2021-9999
-R!/lib/crypto: drop the SHA-1 library support
-C/readme: add guideline for using docker build
-N: implement new module parser
+new,socket: implement new API `read()`
+rft,buffer: reduce the write_buf() complexity to O(n)
+fix,io/net: fix CVE-2021-9999
+doc,readme: add guideline for using docker build
+
+# breaking change
+rft!,lib/crypto: drop the SHA-1 library support
+
+# module name can be ignored
+new: implement new module parser
+chr: reformat the code
 ----
 
-I choose the `/` as divider. It is optional. And it can integrate with module
-path. It helps generate a clearer oneline git commit history.
+I choose the `,` as divider between prefix and component.
+It is optional. And it makes the title looks more straightforward.
+Besides, it helps generate a clearer oneline git commit history.
 
 == Title
 
