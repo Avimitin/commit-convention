@@ -1,5 +1,5 @@
-# Format: <type>[!][,][modules]: descriptions
-# Available type option: new/fix/rft/doc/chr
+# Format: <type>[!|,][modules]: descriptions
+# Available type option: [new,fix,rew,doc,odd]
 # <---Title: one-line summary wrap at 50 chars--->:
 
 

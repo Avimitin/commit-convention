@@ -487,7 +487,7 @@ version marker.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>&lt;type&gt;[!][,][component]: &lt;description&gt;
+<pre>&lt;type&gt;[!|,][component]: &lt;description&gt;
 
 [body]
 
@@ -511,24 +511,29 @@ the giant text with the below convention:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>new: A new feature, equal to <code>feat</code>.</p>
+<p><strong>new</strong>: A commit that implement new feature, equal to <code>feat</code>.</p>
 </li>
 <li>
-<p>fix: A fix commit, equal to <code>fix</code>.</p>
+<p><strong>fix</strong>: A commit that fix some code, equal to <code>fix</code>.</p>
 </li>
 <li>
-<p>rft: A refactor commit, equal to <code>refactor</code>.</p>
+<p><strong>rew</strong>: A commit that rewrite some part of code, <strong>similar</strong> to <code>refactor</code>.</p>
 </li>
 <li>
-<p>chr: A commit don&#8217;t affect the main code, equal to <code>chore</code>.</p>
+<p><strong>odd</strong>: A commit don&#8217;t affect the main code, <strong>similar</strong> to <code>chore</code>.</p>
 </li>
 <li>
-<p>doc: A commit related to document stuff.</p>
+<p><strong>doc</strong>: A commit related to document stuff.</p>
 </li>
 <li>
-<p>Attach <code>!</code> after the type if the commit contains breaking change.</p>
+<p>Replace the <code>,</code> with <code>!</code> after the type if the commit contains breaking change.</p>
 </li>
 </ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+The prefix "rew" stands for "rewrite".
+</blockquote>
 </div>
 <div class="paragraph">
 <p>So after this new design, the commit message will be like:</p>
@@ -537,22 +542,22 @@ the giant text with the below convention:</p>
 <div class="title">Example</div>
 <div class="content">
 <pre>new,socket: implement new API `read()`
-rft,buffer: reduce the write_buf() complexity to O(n)
+rew,buffer: reduce the write_buf() complexity to O(n)
 fix,io/net: fix CVE-2021-9999
 doc,readme: add guideline for using docker build
 
 # breaking change
-rft!,lib/crypto: drop the SHA-1 library support
+rew!lib/crypto: drop the SHA-1 library support
 
 # module name can be ignored
 new: implement new module parser
-chr: reformat the code</pre>
+odd: reformat the code</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>I choose the <code>,</code> as divider between prefix and component.
 It is optional. And it makes the title looks more straightforward.
-Besides, it helps generate a clearer oneline git commit history.</p>
+Besides, it helps generating changelogs and semantic version.</p>
 </div>
 </div>
 </div>
@@ -574,10 +579,21 @@ people.</p>
 <div class="sect2">
 <h3 id="_type">2.2. type</h3>
 <div class="paragraph">
-<p>Use <code>N</code> type when you implement new API or import a new library. Use <code>F</code>
-type when you fix a bug. Use the <code>R</code> type when you modify existing code.
-And use <code>C</code> when you edit a document, docker file, CI file or anything
-else that will not change the main code.</p>
+<p>Use <code>new</code> type when you implement new API or import a new library.
+Use <code>fix</code> type when you fix a bug.</p>
+</div>
+<div class="paragraph">
+<p>Use the <code>rew</code> type when you modify existing code, whatever it contains
+breaking change or not. So it is similar to <code>refactor</code> but not equal.
+As the word refactor stands for "To rewrite existing source code in
+order to improve its readability, reusability or structure without
+affecting its meaning or behaviour." But if you are actually having some
+changes that doesn&#8217;t change any code behavior, I recommend you use the
+<code>odd</code> prefix.</p>
+</div>
+<div class="paragraph">
+<p>And use <code>odd</code> when you edit a document, docker file, CI file or any code
+modification that is trivial.</p>
 </div>
 </div>
 <div class="sect2">
@@ -606,10 +622,10 @@ the commit in the imperative.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>R/subsystem: refactor subsystem X for readability
-C/readme: update getting started documentation
-R!/api: remove deprecated methods
-C/release version 1.0.0</pre>
+<pre>refactor subsystem X for readability
+update getting started documentation
+remove deprecated methods
+release version 1.0.0</pre>
 </div>
 </div>
 <div class="dlist">
@@ -619,10 +635,10 @@ C/release version 1.0.0</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>F/fixed bug with Y              ==&gt; don't use tense
-R/changing behavior of X        ==&gt; don't use tense
-F/more fixes for broken stuff   ==&gt; use verb to make order
-N/sweet new API methods         ==&gt; there is no verb</pre>
+<pre>fixed bug with Y              ==&gt; don't use tense
+changing behavior of X        ==&gt; don't use tense
+more fixes for broken stuff   ==&gt; use verb to make order
+sweet new API methods         ==&gt; there is no verb</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -733,9 +749,11 @@ code block
 * item 1
 * item 2
 
-{ref}[url]
+Lorem ipsum dolor sit amet, qui minim labore {ref-1}
+adipisicing minim sint cillum sint consectetur cupidatat.
 
-:ref: https://github.com/Avimitin/commit-convention</pre>
+= Reference:
+ref-1: https://github.com/Avimitin/commit-convention</pre>
 </div>
 </div>
 </details>
@@ -782,7 +800,7 @@ of the rooter like: "Signed-off-by: Yourname &lt;name@example.com&gt;".</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>F!/popup/push: fix action push elsewhere
+<pre>fix!popup/push: fix action push elsewhere
 
 = Major fixes
 First of all, the push elsewhere action fail to refresh pop up status.
@@ -794,14 +812,15 @@ But the original code just calls it without any arguments.
 So I provide `git.branch.get_all_branches()` to generate necessary
 arguments.
 
-Besides, I truncate the unexpected git branch in commit {commit-link}[12f8e16].
+Besides, I truncate the unexpected git branch in commit {commit-link}.
 
 = BREAKING CHANGE:
 * git.branch.get_local_branches is now private
 
 Fixes: #233
 
-:commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
+= Reference
+commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin &lt;avimitin@gmail.com&gt;</pre>
 </div>
@@ -867,7 +886,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-23 18:00:13 +0800
+Last updated 2021-12-23 20:21:11 +0800
 </div>
 </div>
 </body>

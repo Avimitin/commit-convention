@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.2.0
+:version: 0.2.1
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Format
 
 ----
-<type>[!][,][component]: <description>
+<type>[!|,][component]: <description>
 
 [body]
 
@@ -32,33 +32,36 @@ I don't want the "refactor(scope)" text or other type text ocupy so much space.
 As the conventional commits 1.0.0 use lower case letter in title, I replace
 the giant text with the below convention:
 
-* new: A new feature, equal to `feat`.
-* fix: A fix commit, equal to `fix`.
-* rft: A refactor commit, equal to `refactor`.
-* chr: A commit don't affect the main code, equal to `chore`.
-* doc: A commit related to document stuff.
-* Attach `!` after the type if the commit contains breaking change.
+* *new*: A commit that implement new feature, equal to `feat`.
+* *fix*: A commit that fix some code, equal to `fix`.
+* *rew*: A commit that rewrite some part of code, *similar* to `refactor`.
+* *odd*: A commit don't affect the main code, *similar* to `chore`.
+* *doc*: A commit related to document stuff.
+* Replace the `,` with `!` after the type if the commit contains breaking change.
+
+[quote,]
+The prefix "rew" stands for "rewrite".
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
 new,socket: implement new API `read()`
-rft,buffer: reduce the write_buf() complexity to O(n)
+rew,buffer: reduce the write_buf() complexity to O(n)
 fix,io/net: fix CVE-2021-9999
 doc,readme: add guideline for using docker build
 
 # breaking change
-rft!,lib/crypto: drop the SHA-1 library support
+rew!lib/crypto: drop the SHA-1 library support
 
 # module name can be ignored
 new: implement new module parser
-chr: reformat the code
+odd: reformat the code
 ----
 
 I choose the `,` as divider between prefix and component.
 It is optional. And it makes the title looks more straightforward.
-Besides, it helps generate a clearer oneline git commit history.
+Besides, it helps generating changelogs and semantic version.
 
 == Title
 
@@ -73,10 +76,19 @@ Title should be wrap in 50 Latin characters.
 
 === type
 
-Use `N` type when you implement new API or import a new library. Use `F`
-type when you fix a bug. Use the `R` type when you modify existing code.
-And use `C` when you edit a document, docker file, CI file or anything
-else that will not change the main code.
+Use `new` type when you implement new API or import a new library.
+Use `fix` type when you fix a bug.
+
+Use the `rew` type when you modify existing code, whatever it contains
+breaking change or not. So it is similar to `refactor` but not equal.
+As the word refactor stands for "To rewrite existing source code in
+order to improve its readability, reusability or structure without
+affecting its meaning or behaviour." But if you are actually having some
+changes that doesn't change any code behavior, I recommend you use the
+`odd` prefix.
+
+And use `odd` when you edit a document, docker file, CI file or any code
+modification that is trivial.
 
 === module
 
@@ -96,19 +108,19 @@ For example:
 This is good::
 
 ----
-R/subsystem: refactor subsystem X for readability
-C/readme: update getting started documentation
-R!/api: remove deprecated methods
-C/release version 1.0.0
+refactor subsystem X for readability
+update getting started documentation
+remove deprecated methods
+release version 1.0.0
 ----
 
 And this is bad::
 
 ----
-F/fixed bug with Y              ==> don't use tense
-R/changing behavior of X        ==> don't use tense
-F/more fixes for broken stuff   ==> use verb to make order
-N/sweet new API methods         ==> there is no verb
+fixed bug with Y              ==> don't use tense
+changing behavior of X        ==> don't use tense
+more fixes for broken stuff   ==> use verb to make order
+sweet new API methods         ==> there is no verb
 ----
 
 A rule of thumb is to fill this sentence:
@@ -175,9 +187,11 @@ code block
 * item 1
 * item 2
 
-{ref}[url]
+Lorem ipsum dolor sit amet, qui minim labore {ref-1}
+adipisicing minim sint cillum sint consectetur cupidatat.
 
-:ref: https://github.com/Avimitin/commit-convention
+= Reference:
+ref-1: https://github.com/Avimitin/commit-convention
 ....
 [pass]
 </details>
@@ -212,7 +226,7 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ----
-F!/popup/push: fix action push elsewhere
+fix!popup/push: fix action push elsewhere
 
 = Major fixes
 First of all, the push elsewhere action fail to refresh pop up status.
@@ -224,14 +238,15 @@ But the original code just calls it without any arguments.
 So I provide `git.branch.get_all_branches()` to generate necessary
 arguments.
 
-Besides, I truncate the unexpected git branch in commit {commit-link}[12f8e16].
+Besides, I truncate the unexpected git branch in commit {commit-link}.
 
 = BREAKING CHANGE:
 * git.branch.get_local_branches is now private
 
 Fixes: #233
 
-:commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
+= Reference
+commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin <avimitin@gmail.com>
 ----
