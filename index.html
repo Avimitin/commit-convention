@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.2.0</title>
+<title>Avimitin&#8217;s Commit Convention 0.2.2</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.2.0</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.2.2</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -517,7 +517,7 @@ the giant text with the below convention:</p>
 <p><strong>fix</strong>: A commit that fix some code, equal to <code>fix</code>.</p>
 </li>
 <li>
-<p><strong>rew</strong>: A commit that rewrite some part of code, <strong>similar</strong> to <code>refactor</code>.</p>
+<p><strong>rwt</strong>: A commit that rewrite some part of code, <strong>similar</strong> to <code>refactor</code>.</p>
 </li>
 <li>
 <p><strong>odd</strong>: A commit don&#8217;t affect the main code, <strong>similar</strong> to <code>chore</code>.</p>
@@ -542,12 +542,12 @@ The prefix "rew" stands for "rewrite".
 <div class="title">Example</div>
 <div class="content">
 <pre>new,socket: implement new API `read()`
-rew,buffer: reduce the write_buf() complexity to O(n)
+rwt,buffer: reduce the write_buf() complexity to O(n)
 fix,io/net: fix CVE-2021-9999
 doc,readme: add guideline for using docker build
 
 # breaking change
-rew!lib/crypto: drop the SHA-1 library support
+rwt!lib/crypto: drop the SHA-1 library support
 
 # module name can be ignored
 new: implement new module parser
@@ -583,7 +583,7 @@ people.</p>
 Use <code>fix</code> type when you fix a bug.</p>
 </div>
 <div class="paragraph">
-<p>Use the <code>rew</code> type when you modify existing code, whatever it contains
+<p>Use the <code>rwt</code> type when you modify existing code, whatever it contains
 breaking change or not. So it is similar to <code>refactor</code> but not equal.
 As the word refactor stands for "To rewrite existing source code in
 order to improve its readability, reusability or structure without
@@ -886,7 +886,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-23 20:21:11 +0800
+Last updated 2021-12-27 09:35:31 +0800
 </div>
 </div>
 </body>

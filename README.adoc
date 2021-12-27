@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.2.1
+:version: 0.2.2
 :sectnums:
 :toc: left
 // cite
@@ -34,7 +34,7 @@ the giant text with the below convention:
 
 * *new*: A commit that implement new feature, equal to `feat`.
 * *fix*: A commit that fix some code, equal to `fix`.
-* *rew*: A commit that rewrite some part of code, *similar* to `refactor`.
+* *rwt*: A commit that rewrite some part of code, *similar* to `refactor`.
 * *odd*: A commit don't affect the main code, *similar* to `chore`.
 * *doc*: A commit related to document stuff.
 * Replace the `,` with `!` after the type if the commit contains breaking change.
@@ -47,12 +47,12 @@ So after this new design, the commit message will be like:
 .Example
 ----
 new,socket: implement new API `read()`
-rew,buffer: reduce the write_buf() complexity to O(n)
+rwt,buffer: reduce the write_buf() complexity to O(n)
 fix,io/net: fix CVE-2021-9999
 doc,readme: add guideline for using docker build
 
 # breaking change
-rew!lib/crypto: drop the SHA-1 library support
+rwt!lib/crypto: drop the SHA-1 library support
 
 # module name can be ignored
 new: implement new module parser
@@ -79,7 +79,7 @@ Title should be wrap in 50 Latin characters.
 Use `new` type when you implement new API or import a new library.
 Use `fix` type when you fix a bug.
 
-Use the `rew` type when you modify existing code, whatever it contains
+Use the `rwt` type when you modify existing code, whatever it contains
 breaking change or not. So it is similar to `refactor` but not equal.
 As the word refactor stands for "To rewrite existing source code in
 order to improve its readability, reusability or structure without
