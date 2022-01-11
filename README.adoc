@@ -15,7 +15,7 @@ version marker.
 == Too long didn't read
 
 ----
-[component][!][:] <type + summary>
+[component:] [!]<type + summary>
 
 [body]
 
