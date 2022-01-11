@@ -47,7 +47,7 @@ io/net: fix CVE-2021-9999
 docs/readme: add guideline for using docker build
 
 # breaking change
-lib/crypto: !modify the SHA-1 library
+lib/crypto: !delete the SHA-1 library support
 
 # module name can be ignored, so you must use upper case for first letter
 Implement new module parser
