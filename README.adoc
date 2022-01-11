@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.3.0
+:version: 0.3.1
 :sectnums:
 :toc: left
 // cite

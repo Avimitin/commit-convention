@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.3.0</title>
+<title>Avimitin&#8217;s Commit Convention 0.3.1</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.3.0</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.3.1</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -487,7 +487,7 @@ version marker.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>[component][!][:] &lt;type + summary&gt;
+<pre>[component:] [!]&lt;type + summary&gt;
 
 [body]
 
@@ -577,8 +577,8 @@ So I decide to use "add" and "implement" to describe this two behaviour.</p>
 </dd>
 <dt class="hdlist1">fix</dt>
 <dd>
-<p>This commit contains some bug fixes. So here we just use "fix" to describe the
-commit.</p>
+<p>This commit contains some bug fixes, or it correct some unexpected behavior.
+So here we just use "fix" to describe the commit.</p>
 </dd>
 <dt class="hdlist1">docs</dt>
 <dd>
@@ -879,7 +879,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-01-11 12:16:05 +0800
+Last updated 2022-01-11 12:54:46 +0800
 </div>
 </div>
 </body>
