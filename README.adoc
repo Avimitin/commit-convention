@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.3.1
+:version: 0.3.2
 :sectnums:
 :toc: left
 // cite
@@ -31,7 +31,8 @@ So my decision is to embed type into summary.
 
 * For a new feature, please use "add", "implement" as the first word in the summary.
 * For fixes, please use "fix" as the first word in the summary.
-* For normal change, please use "rewrite", "modify" as the summary.
+* For normal change, please use "rewrite", "update", "delete" as the summary
+prefix.
 * For document, please add "docs" as the component prefix.
 * For breaking change, attach a bang sign "!" before the summary.
 * If no component given, please use upper case for the first letter.
@@ -71,8 +72,9 @@ This commit may import a new library or implement some new feature.
 So I decide to use "add" and "implement" to describe this two behaviour.
 
 refactor::
-This commit may change some part of the code. So I decide to use "rewrite" and
-"modify" to describe the behavior.
+This commit may change some part of the code. Here I copy the database "CRUD"
+actions. The action create belong to new features so here we drop it.
+I limit the refactor verbs to "Rewrite", "Update", "Delete".
 
 fix::
 This commit contains some bug fixes, or it correct some unexpected behavior.
