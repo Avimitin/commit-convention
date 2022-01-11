@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.16">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.2.2</title>
+<title>Avimitin&#8217;s Commit Convention 0.3.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -440,7 +440,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.2.2</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.3.0</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -448,7 +448,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_format">1. Format</a></li>
+<li><a href="#_too_long_didnt_read">1. Too long didn&#8217;t read</a></li>
 <li><a href="#_title">2. Title</a>
 <ul class="sectlevel2">
 <li><a href="#_length">2.1. length</a></li>
@@ -483,57 +483,47 @@ version marker.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_format">1. Format</h2>
+<h2 id="_too_long_didnt_read">1. Too long didn&#8217;t read</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>&lt;type&gt;[!|,][component]: &lt;description&gt;
+<pre>[component][!][:] &lt;type + summary&gt;
 
 [body]
 
 [footer]</pre>
 </div>
 </div>
-<div class="quoteblock">
-<blockquote>
-Component in <code>[]</code> means optional, other are required.
-</blockquote>
+<div class="paragraph">
+<p>Component in <code>[]</code> means optional, other are required.</p>
 </div>
 <div class="paragraph">
 <p>This is similar to the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits 1.0.0</a>, but it trim
 the long commit type.
-I don&#8217;t want the "refactor(scope)" text or other type text ocupy so much space.</p>
-</div>
-<div class="paragraph">
-<p>As the conventional commits 1.0.0 use lower case letter in title, I replace
-the giant text with the below convention:</p>
+I don&#8217;t want the "refactor(scope)" text or other type text ocupy so much space.
+So my decision is to embed type into summary.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>new</strong>: A commit that implement new feature, equal to <code>feat</code>.</p>
+<p>For a new feature, please use "add", "implement" as the first word in the summary.</p>
 </li>
 <li>
-<p><strong>fix</strong>: A commit that fix some code, equal to <code>fix</code>.</p>
+<p>For fixes, please use "fix" as the first word in the summary.</p>
 </li>
 <li>
-<p><strong>rwt</strong>: A commit that rewrite some part of code, <strong>similar</strong> to <code>refactor</code>.</p>
+<p>For normal change, please use "rewrite", "modify" as the summary.</p>
 </li>
 <li>
-<p><strong>odd</strong>: A commit don&#8217;t affect the main code, <strong>similar</strong> to <code>chore</code>.</p>
+<p>For document, please add "docs" as the component prefix.</p>
 </li>
 <li>
-<p><strong>doc</strong>: A commit related to document stuff.</p>
+<p>For breaking change, attach a bang sign "!" before the summary.</p>
 </li>
 <li>
-<p>Replace the <code>,</code> with <code>!</code> after the type if the commit contains breaking change.</p>
+<p>If no component given, please use upper case for the first letter.</p>
 </li>
 </ul>
-</div>
-<div class="quoteblock">
-<blockquote>
-The prefix "rew" stands for "rewrite".
-</blockquote>
 </div>
 <div class="paragraph">
 <p>So after this new design, the commit message will be like:</p>
@@ -541,23 +531,18 @@ The prefix "rew" stands for "rewrite".
 <div class="listingblock">
 <div class="title">Example</div>
 <div class="content">
-<pre>new,socket: implement new API `read()`
-rwt,buffer: reduce the write_buf() complexity to O(n)
-fix,io/net: fix CVE-2021-9999
-doc,readme: add guideline for using docker build
+<pre>socket: implement new API `read()`
+buffer: rewrite the `write_buf()` function
+io/net: fix CVE-2021-9999
+docs/readme: add guideline for using docker build
 
 # breaking change
-rwt!lib/crypto: drop the SHA-1 library support
+lib/crypto: !modify the SHA-1 library
 
-# module name can be ignored
-new: implement new module parser
-odd: reformat the code</pre>
+# module name can be ignored, so you must use upper case for first letter
+Implement new module parser
+Modify the code format</pre>
 </div>
-</div>
-<div class="paragraph">
-<p>I choose the <code>,</code> as divider between prefix and component.
-It is optional. And it makes the title looks more straightforward.
-Besides, it helps generating changelogs and semantic version.</p>
 </div>
 </div>
 </div>
@@ -578,22 +563,37 @@ people.</p>
 </div>
 <div class="sect2">
 <h3 id="_type">2.2. type</h3>
-<div class="paragraph">
-<p>Use <code>new</code> type when you implement new API or import a new library.
-Use <code>fix</code> type when you fix a bug.</p>
-</div>
-<div class="paragraph">
-<p>Use the <code>rwt</code> type when you modify existing code, whatever it contains
-breaking change or not. So it is similar to <code>refactor</code> but not equal.
-As the word refactor stands for "To rewrite existing source code in
-order to improve its readability, reusability or structure without
-affecting its meaning or behaviour." But if you are actually having some
-changes that doesn&#8217;t change any code behavior, I recommend you use the
-<code>odd</code> prefix.</p>
-</div>
-<div class="paragraph">
-<p>And use <code>odd</code> when you edit a document, docker file, CI file or any code
-modification that is trivial.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">feature</dt>
+<dd>
+<p>This commit may import a new library or implement some new feature.
+So I decide to use "add" and "implement" to describe this two behaviour.</p>
+</dd>
+<dt class="hdlist1">refactor</dt>
+<dd>
+<p>This commit may change some part of the code. So I decide to use "rewrite" and
+"modify" to describe the behavior.</p>
+</dd>
+<dt class="hdlist1">fix</dt>
+<dd>
+<p>This commit contains some bug fixes. So here we just use "fix" to describe the
+commit.</p>
+</dd>
+<dt class="hdlist1">docs</dt>
+<dd>
+<p>This commit modify the document, whatever README or any other guidance.
+And those change still can be classify by the above types. So I decide to add
+"docs" at the front of the line. And we should still use the above type to
+describe the document changes.</p>
+</dd>
+<dt class="hdlist1">BREAKING CHANGE</dt>
+<dd>
+<p>This commit contains some breaking changes that is important enough for people
+to read the body of the commit message. So I decide to add a bang before the
+summary.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="sect2">
@@ -757,12 +757,6 @@ ref-1: https://github.com/Avimitin/commit-convention</pre>
 </div>
 </div>
 </details>
-<div class="paragraph">
-<p>The most useful feature of the asciidoc format for our commit is attribute.
-With this feature, you can put all the links at the bottom of the commit,
- and then reference it within the commit.
-It will prevent some super long URL from cluttering up the commit message.</p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="_one_line_per_sentence">3.3. One Line Per Sentence</h3>
@@ -800,7 +794,7 @@ of the rooter like: "Signed-off-by: Yourname &lt;name@example.com&gt;".</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>fix!popup/push: fix action push elsewhere
+<pre>popup/push: !fix action push elsewhere
 
 = Major fixes
 First of all, the push elsewhere action fail to refresh pop up status.
@@ -844,10 +838,9 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 <div class="sect1">
 <h2 id="_how_to_generate_changelogs">7. How to generate changelogs</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">git log --oneline --pretty="format:%s" {RANGE} | sed 's/[A-Z]!*\/*//'</code></pre>
-</div>
+<div class="paragraph">
+<p>Take a look on my new changelog generator project:
+<a href="https://github.com/Avimitin/changelog_generator" class="bare">https://github.com/Avimitin/changelog_generator</a></p>
 </div>
 </div>
 </div>
@@ -886,7 +879,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-12-27 09:35:31 +0800
+Last updated 2022-01-11 12:16:05 +0800
 </div>
 </div>
 </body>
