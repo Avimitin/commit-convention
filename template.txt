@@ -1,5 +1,12 @@
-# Format: <type>[!|,][modules]: descriptions
-# Available type option: [new,fix,rwt,doc,odd]
+# Tips:
+# [Title]: Lower case, prefix with module name, don't end with a period.
+# A rule of thumb: "This patch will modify the project to _____".
+#
+# [Body]: Provide context for the change and explain what it does and
+# why you do this.
+#
+# Format: [modules:] [!]<type+summary>
+# Available type option: [add, implment, fix, rewrite, modify, docs]
 # <---Title: one-line summary wrap at 50 chars--->:
 
 
@@ -11,10 +18,3 @@
 # Do not delete the line above
 # <----- Footer: Include Co-authored-by for all contributors -------->:
 Signed-off-by: Avimitin <avimitin@gmail.com>
-
-# Tips:
-# [Title]: Lower case, prefix with module name, don't end with a period.
-# A rule of thumb: "This patch will modify the project to _____".
-#
-# [Body]: Provide context for the change and explain what it does and
-# why do this.

@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.2.2
+:version: 0.3.0
 :sectnums:
 :toc: left
 // cite
@@ -12,56 +12,46 @@ Avimitin <avimitin@gmail.com>
 Avimitin's commit convention is a commit style that keep simplicity and semantic
 version marker.
 
-== Format
+== Too long didn't read
 
 ----
-<type>[!|,][component]: <description>
+[component][!][:] <type + summary>
 
 [body]
 
 [footer]
 ----
 
-[quote,]
 Component in `[]` means optional, other are required.
 
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
 the long commit type.
 I don't want the "refactor(scope)" text or other type text ocupy so much space.
+So my decision is to embed type into summary.
 
-As the conventional commits 1.0.0 use lower case letter in title, I replace
-the giant text with the below convention:
-
-* *new*: A commit that implement new feature, equal to `feat`.
-* *fix*: A commit that fix some code, equal to `fix`.
-* *rwt*: A commit that rewrite some part of code, *similar* to `refactor`.
-* *odd*: A commit don't affect the main code, *similar* to `chore`.
-* *doc*: A commit related to document stuff.
-* Replace the `,` with `!` after the type if the commit contains breaking change.
-
-[quote,]
-The prefix "rew" stands for "rewrite".
+* For a new feature, please use "add", "implement" as the first word in the summary.
+* For fixes, please use "fix" as the first word in the summary.
+* For normal change, please use "rewrite", "modify" as the summary.
+* For document, please add "docs" as the component prefix.
+* For breaking change, attach a bang sign "!" before the summary.
+* If no component given, please use upper case for the first letter.
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
-new,socket: implement new API `read()`
-rwt,buffer: reduce the write_buf() complexity to O(n)
-fix,io/net: fix CVE-2021-9999
-doc,readme: add guideline for using docker build
+socket: implement new API `read()`
+buffer: rewrite the `write_buf()` function
+io/net: fix CVE-2021-9999
+docs/readme: add guideline for using docker build
 
 # breaking change
-rwt!lib/crypto: drop the SHA-1 library support
+lib/crypto: !modify the SHA-1 library
 
-# module name can be ignored
-new: implement new module parser
-odd: reformat the code
+# module name can be ignored, so you must use upper case for first letter
+Implement new module parser
+Modify the code format
 ----
-
-I choose the `,` as divider between prefix and component.
-It is optional. And it makes the title looks more straightforward.
-Besides, it helps generating changelogs and semantic version.
 
 == Title
 
@@ -76,19 +66,28 @@ Title should be wrap in 50 Latin characters.
 
 === type
 
-Use `new` type when you implement new API or import a new library.
-Use `fix` type when you fix a bug.
+feature::
+This commit may import a new library or implement some new feature.
+So I decide to use "add" and "implement" to describe this two behaviour.
 
-Use the `rwt` type when you modify existing code, whatever it contains
-breaking change or not. So it is similar to `refactor` but not equal.
-As the word refactor stands for "To rewrite existing source code in
-order to improve its readability, reusability or structure without
-affecting its meaning or behaviour." But if you are actually having some
-changes that doesn't change any code behavior, I recommend you use the
-`odd` prefix.
+refactor::
+This commit may change some part of the code. So I decide to use "rewrite" and
+"modify" to describe the behavior.
 
-And use `odd` when you edit a document, docker file, CI file or any code
-modification that is trivial.
+fix::
+This commit contains some bug fixes. So here we just use "fix" to describe the
+commit.
+
+docs::
+This commit modify the document, whatever README or any other guidance.
+And those change still can be classify by the above types. So I decide to add
+"docs" at the front of the line. And we should still use the above type to
+describe the document changes.
+
+BREAKING CHANGE::
+This commit contains some breaking changes that is important enough for people
+to read the body of the commit message. So I decide to add a bang before the
+summary.
 
 === module
 
@@ -196,11 +195,6 @@ ref-1: https://github.com/Avimitin/commit-convention
 [pass]
 </details>
 
-The most useful feature of the asciidoc format for our commit is attribute.
-With this feature, you can put all the links at the bottom of the commit,
- and then reference it within the commit.
-It will prevent some super long URL from cluttering up the commit message.
-
 === One Line Per Sentence
 
 Besides, I recommend using one line per sentence.
@@ -226,7 +220,7 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ----
-fix!popup/push: fix action push elsewhere
+popup/push: !fix action push elsewhere
 
 = Major fixes
 First of all, the push elsewhere action fail to refresh pop up status.
@@ -262,10 +256,8 @@ git config --global commit.template $PWD/commit-convention/template.txt
 
 == How to generate changelogs
 
-[source, bash]
-----
-git log --oneline --pretty="format:%s" {RANGE} | sed 's/[A-Z]!*\/*//'
-----
+Take a look on my new changelog generator project:
+https://github.com/Avimitin/changelog_generator
 
 == Credit
 
@@ -280,3 +272,5 @@ This convention is inspired by the below project:
 https://creativecommons.org/licenses/by/4.0/[CC-BY-4.0]
 
 (c) 2021 Avimitin
+
+// vim: tw=80 fo+=t
