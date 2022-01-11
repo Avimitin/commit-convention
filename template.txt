@@ -6,7 +6,7 @@
 # why you do this.
 #
 # Format: [modules:] [!]<type+summary>
-# Available type option: [add, implment, fix, rewrite, modify, docs]
+# Available type option: [add, implement, fix, rewrite, modify, docs]
 # <---Title: one-line summary wrap at 50 chars--->:
 
 
