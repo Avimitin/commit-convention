@@ -75,8 +75,8 @@ This commit may change some part of the code. So I decide to use "rewrite" and
 "modify" to describe the behavior.
 
 fix::
-This commit contains some bug fixes. So here we just use "fix" to describe the
-commit.
+This commit contains some bug fixes, or it correct some unexpected behavior.
+So here we just use "fix" to describe the commit.
 
 docs::
 This commit modify the document, whatever README or any other guidance.
