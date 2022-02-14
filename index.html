@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.16">
+<meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.3.1</title>
+<title>Avimitin&#8217;s Commit Convention 0.4.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -194,7 +194,8 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
 details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
 details{margin-left:1.25rem}
-details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;-webkit-tap-highlight-color:transparent}
+details>summary{cursor:pointer;display:block;position:relative;line-height:1.6;margin-bottom:.625rem;outline:none;-webkit-tap-highlight-color:transparent}
+details>summary::-webkit-details-marker{display:none}
 details>summary::before{content:"";border:solid transparent;border-left:solid;border-width:.3em 0 .3em .5em;position:absolute;top:.5em;left:-1.25rem;transform:translateX(15%)}
 details[open]>summary::before{border:solid transparent;border-top:solid;border-width:.5em .3em 0;transform:translateY(15%)}
 details>summary::after{content:"";width:1.25rem;height:1em;position:absolute;top:.3em;left:-1.25rem}
@@ -236,9 +237,8 @@ pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
 table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
 table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
 table.linenotable td.code{padding-left:.75em}
-table.linenotable td.linenos{border-right:1px solid;opacity:.35;padding-right:.5em}
-pre.pygments .lineno{border-right:1px solid;opacity:.35;display:inline-block;margin-right:.75em}
-pre.pygments .lineno::before{content:"";margin-right:-.125em}
+table.linenotable td.linenos,pre.pygments .linenos{border-right:1px solid;opacity:.35;padding-right:.5em;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+pre.pygments span.linenos{display:inline-block;margin-right:.75em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
@@ -275,7 +275,7 @@ table.frame-none>colgroup+*>:first-child>*,table.frame-sides>colgroup+*>:first-c
 table.frame-none>:last-child>:last-child>*,table.frame-sides>:last-child>:last-child>*{border-bottom-width:0}
 table.frame-none>*>tr>:first-child,table.frame-ends>*>tr>:first-child{border-left-width:0}
 table.frame-none>*>tr>:last-child,table.frame-ends>*>tr>:last-child{border-right-width:0}
-table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+table.stripes-all>*>tr,table.stripes-odd>*>tr:nth-of-type(odd),table.stripes-even>*>tr:nth-of-type(even),table.stripes-hover>*>tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
 th.halign-center,td.halign-center{text-align:center}
@@ -291,10 +291,11 @@ ol{margin-left:1.75em}
 ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
 dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
-ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
 ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
 ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
 ul.unstyled,ol.unstyled{margin-left:0}
+li>p:empty:only-child::before{content:"";display:inline-block}
 ul.checklist>li>p:first-child{margin-left:-1em}
 ul.checklist>li>p:first-child>.fa-square-o:first-child,ul.checklist>li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
 ul.checklist>li>p:first-child>input[type=checkbox]:first-child{margin-right:.25em}
@@ -337,8 +338,6 @@ sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
 #footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
 #footnotes .footnote:last-of-type{margin-bottom:0}
 #content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
-.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
-.gist .file-data>table td.line-data{width:99%}
 div.unbreakable{page-break-inside:avoid}
 .big{font-size:larger}
 .small{font-size:smaller}
@@ -440,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.3.1</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.4.0</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -452,9 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_title">2. Title</a>
 <ul class="sectlevel2">
 <li><a href="#_length">2.1. length</a></li>
-<li><a href="#_type">2.2. type</a></li>
-<li><a href="#_module">2.3. module</a></li>
-<li><a href="#_description">2.4. description</a></li>
+<li><a href="#_description">2.2. description</a></li>
 </ul>
 </li>
 <li><a href="#_body">3. Body</a>
@@ -487,7 +484,7 @@ version marker.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>[component:] [!]&lt;type + summary&gt;
+<pre>&lt;type&gt;[!]:[:module:] &lt;summary&gt;
 
 [body]
 
@@ -506,22 +503,22 @@ So my decision is to embed type into summary.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For a new feature, please use "add", "implement" as the first word in the summary.</p>
+<p>For a new feature, please use "feat" type.</p>
 </li>
 <li>
-<p>For fixes, please use "fix" as the first word in the summary.</p>
+<p>For fixes, please use "fix" type.</p>
 </li>
 <li>
-<p>For normal change, please use "rewrite", "modify" as the summary.</p>
+<p>For normal change, please use "reft" type. (It means refactor)</p>
 </li>
 <li>
-<p>For document, please add "docs" as the component prefix.</p>
+<p>For document, please use "docs" type.</p>
+</li>
+<li>
+<p>For miscellaneous work that not affect to code, please use "misc" type.</p>
 </li>
 <li>
 <p>For breaking change, attach a bang sign "!" before the summary.</p>
-</li>
-<li>
-<p>If no component given, please use upper case for the first letter.</p>
 </li>
 </ul>
 </div>
@@ -531,19 +528,20 @@ So my decision is to embed type into summary.</p>
 <div class="listingblock">
 <div class="title">Example</div>
 <div class="content">
-<pre>socket: implement new API `read()`
-buffer: rewrite the `write_buf()` function
-io/net: fix CVE-2021-9999
-docs/readme: add guideline for using docker build
+<pre>feat::socket: implement new API `read()`
+reft::buffer: rewrite the `write_buf()` function
+fix::io/net: fix CVE-2021-9999
+docs::readme: add guideline for using docker build
 
 # breaking change
-lib/crypto: !modify the SHA-1 library
+reft!:lib/crypto: remove the SHA-1 library support
 
-# module name can be ignored, so you must use upper case for first letter
-Implement new module parser
-Modify the code format</pre>
+# module name can be ignored
+feat: implement new module parser
+misc: run code format process</pre>
 </div>
 </div>
+<hr>
 </div>
 </div>
 <div class="sect1">
@@ -562,51 +560,7 @@ people.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_type">2.2. type</h3>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">feature</dt>
-<dd>
-<p>This commit may import a new library or implement some new feature.
-So I decide to use "add" and "implement" to describe this two behaviour.</p>
-</dd>
-<dt class="hdlist1">refactor</dt>
-<dd>
-<p>This commit may change some part of the code. So I decide to use "rewrite" and
-"modify" to describe the behavior.</p>
-</dd>
-<dt class="hdlist1">fix</dt>
-<dd>
-<p>This commit contains some bug fixes, or it correct some unexpected behavior.
-So here we just use "fix" to describe the commit.</p>
-</dd>
-<dt class="hdlist1">docs</dt>
-<dd>
-<p>This commit modify the document, whatever README or any other guidance.
-And those change still can be classify by the above types. So I decide to add
-"docs" at the front of the line. And we should still use the above type to
-describe the document changes.</p>
-</dd>
-<dt class="hdlist1">BREAKING CHANGE</dt>
-<dd>
-<p>This commit contains some breaking changes that is important enough for people
-to read the body of the commit message. So I decide to add a bang before the
-summary.</p>
-</dd>
-</dl>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_module">2.3. module</h3>
-<div class="paragraph">
-<p>Except the type mark, all the text in title should be lower case. If the
-module contains upper case like <code>README</code> or <code>TCP</code>, convert them to lower
-case. If you have module named like <code>ipParser</code>, convert them to snake case
-like <code>ip_parser</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_description">2.4. description</h3>
+<h3 id="_description">2.2. description</h3>
 <div class="paragraph">
 <p>The first word of the title <strong>should</strong> be lower case and <strong>must</strong> be a verb.
 Don&#8217;t end with a period and don&#8217;t attach any tense on it. You <strong>must</strong> write
@@ -712,48 +666,50 @@ section. See the section "Full Example" for details.</p>
 <div class="sect2">
 <h3 id="_recommend_format">3.2. Recommend format</h3>
 <div class="paragraph">
-<p>I recommend using the asciidoc format.
-It is a powerful markup language.
-You can learn it from the <a href="https://asciidoctor.org/">asciidoc document</a>.</p>
-</div>
-<div class="quoteblock">
-<blockquote>
-Use AsciiDoc for document markup.
-Really.
-It&#8217;s actually readable by humans,
- easier to parse and way more flexible than XML.
-</blockquote>
-<div class="attribution">
-&#8212; Linux Torvalds
-</div>
+<p>I recommend using the restructured text format.
+It is a powerful markup language.</p>
 </div>
 <div class="paragraph">
-<p>However, I only recommend you to use the basic asciidoc format.
-Don&#8217;t use too much asciidoc syntax.
-It will confused other user.
-My daily practice are listed below:</p>
+<p>My daily practice are listed below:</p>
 </div>
 <details>
 <summary>Click to expand!</summary>
 <div class="literalblock">
 <div class="content">
-<pre>= Section
+<pre>Section
+=======
 
-`short code`
+You can put text in *italic* or in **bold**,
+you can "mark" text as code with double backquote ``println!()``.
 
-[rust]
-----
-code block
-----
+Literal code blocks (ref) are introduced by ending a paragraph with the special marker ::.
+The literal block must be indented (and, like all paragraphs, separated from the surrounding
+ones by blank lines):
+
+This is a normal text paragraph. The next paragraph is a code sample::
+
+  fn main() {
+    println!("Hello World");
+  }
+
+This is a normal text paragraph again.
+
+List is similar to markdown.
 
 * item 1
 * item 2
+  * item 2.1
+* item 3
 
-Lorem ipsum dolor sit amet, qui minim labore {ref-1}
-adipisicing minim sint cillum sint consectetur cupidatat.
+You can use two way to define a link.
 
-= Reference:
-ref-1: https://github.com/Avimitin/commit-convention</pre>
+- By adding an underscore after a word : Github_ and by adding the target URL
+after the text.
+- By making a more Markdown-like link: `Github &lt;https://github.com/Avimitin/commit-convention&gt;`_
+
+Reference
+---------
+.. _GitHub: https://github.com/Avimitin/commit-convention</pre>
 </div>
 </div>
 </details>
@@ -792,29 +748,33 @@ of the rooter like: "Signed-off-by: Yourname &lt;name@example.com&gt;".</p>
 <div class="sect1">
 <h2 id="_full_example">5. Full Example</h2>
 <div class="sectionbody">
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre>popup/push: !fix action push elsewhere
+<pre>fix!:popup/push: fix action push elsewhere
 
-= Major fixes
+Major fixes
+===========
+
 First of all, the push elsewhere action fail to refresh pop up status.
-This is because it didn't pass the `popup` variable.
+This is because it didn't pass the ``popup`` variable.
 
-Secondly, the `git.branch.prompt_for_branch()` function needs a list of
+Secondly, the ``git.branch.prompt_for_branch()`` function needs a list of
 branches to test if arguments are contained in options.
 But the original code just calls it without any arguments.
-So I provide `git.branch.get_all_branches()` to generate necessary
+So I provide ``git.branch.get_all_branches()`` to generate necessary
 arguments.
 
-Besides, I truncate the unexpected git branch in commit {commit-link}.
+Besides, I truncate the unexpected git branch in commit 12f831669_.
 
-= BREAKING CHANGE:
+BREAKING CHANGE
+----------------
 * git.branch.get_local_branches is now private
 
 Fixes: #233
 
-= Reference
-commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
+Reference
+---------
+.. _12f8e1669: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin &lt;avimitin@gmail.com&gt;</pre>
 </div>
@@ -879,7 +839,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-01-11 12:54:46 +0800
+Last updated 2022-02-14 09:50:04 +0800
 </div>
 </div>
 </body>

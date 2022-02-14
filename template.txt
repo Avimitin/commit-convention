@@ -4,13 +4,15 @@
 # [Body]: Provide context for the change and explain what it does and
 # why you do this.
 #
-# Format: <type>[!][modules]: <summary>
-# Available type option: [feat, fix, reft, triv, docs]
+# Format: <type>[!]:[:modules:] <summary>
+# Available type option: [feat, fix, reft, misc, docs]
+#
 # <---Title: one-line summary wrap at 50 chars--->:
 
 
 # Do not delete the line above
-# Remember to include "Fixes #ID" or "Closes #ID" when you making PR.
+# Remember to include "Fixes #ID" or "Closes #ID".
+#
 # <---- Body: Explain what and why (not *how*) wrap at 72 chars ----->:
 
 

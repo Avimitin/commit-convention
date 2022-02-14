@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.3.2
+:version: 0.4.0
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Too long didn't read
 
 ----
-[component:] [!]<type + summary>
+<type>[!]:[:module:] <summary>
 
 [body]
 
@@ -29,30 +29,31 @@ the long commit type.
 I don't want the "refactor(scope)" text or other type text ocupy so much space.
 So my decision is to embed type into summary.
 
-* For a new feature, please use "add", "implement" as the first word in the summary.
-* For fixes, please use "fix" as the first word in the summary.
-* For normal change, please use "rewrite", "update", "delete" as the summary
-prefix.
-* For document, please add "docs" as the component prefix.
+* For a new feature, please use "feat" type.
+* For fixes, please use "fix" type.
+* For normal change, please use "reft" type. (It means refactor)
+* For document, please use "docs" type.
+* For miscellaneous work that not affect to code, please use "misc" type.
 * For breaking change, attach a bang sign "!" before the summary.
-* If no component given, please use upper case for the first letter.
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
-socket: implement new API `read()`
-buffer: rewrite the `write_buf()` function
-io/net: fix CVE-2021-9999
-docs/readme: add guideline for using docker build
+feat::socket: implement new API `read()`
+reft::buffer: rewrite the `write_buf()` function
+fix::io/net: fix CVE-2021-9999
+docs::readme: add guideline for using docker build
 
 # breaking change
-lib/crypto: !delete the SHA-1 library support
+reft!:lib/crypto: remove the SHA-1 library support
 
-# module name can be ignored, so you must use upper case for first letter
-Implement new module parser
-Modify the code format
+# module name can be ignored
+feat: implement new module parser
+misc: run code format process
 ----
+
+''''''
 
 == Title
 
@@ -64,39 +65,6 @@ people.
 === length
 
 Title should be wrap in 50 Latin characters.
-
-=== type
-
-feature::
-This commit may import a new library or implement some new feature.
-So I decide to use "add" and "implement" to describe this two behaviour.
-
-refactor::
-This commit may change some part of the code. Here I copy the database "CRUD"
-actions. The action create belong to new features so here we drop it.
-I limit the refactor verbs to "Rewrite", "Update", "Delete".
-
-fix::
-This commit contains some bug fixes, or it correct some unexpected behavior.
-So here we just use "fix" to describe the commit.
-
-docs::
-This commit modify the document, whatever README or any other guidance.
-And those change still can be classify by the above types. So I decide to add
-"docs" at the front of the line. And we should still use the above type to
-describe the document changes.
-
-BREAKING CHANGE::
-This commit contains some breaking changes that is important enough for people
-to read the body of the commit message. So I decide to add a bang before the
-summary.
-
-=== module
-
-Except the type mark, all the text in title should be lower case. If the
-module contains upper case like `README` or `TCP`, convert them to lower
-case. If you have module named like `ipParser`, convert them to snake case
-like `ip_parser`.
 
 === description
 
@@ -157,42 +125,49 @@ section. See the section "Full Example" for details.
 
 === Recommend format
 
-I recommend using the asciidoc format.
+I recommend using the restructured text format.
 It is a powerful markup language.
-You can learn it from the {asciidoc-homepage}[asciidoc document].
 
-"Use AsciiDoc for document markup.
-Really.
-It's actually readable by humans,
- easier to parse and way more flexible than XML."
--- Linux Torvalds
-
-However, I only recommend you to use the basic asciidoc format.
-Don't use too much asciidoc syntax.
-It will confused other user.
 My daily practice are listed below:
 
 [pass]
 <details>
 <summary>Click to expand!</summary>
 ....
-= Section
+Section
+=======
 
-`short code`
+You can put text in *italic* or in **bold**,
+you can "mark" text as code with double backquote ``println!()``.
 
-[rust]
-----
-code block
-----
+Literal code blocks (ref) are introduced by ending a paragraph with the special marker ::. 
+The literal block must be indented (and, like all paragraphs, separated from the surrounding
+ones by blank lines):
+
+This is a normal text paragraph. The next paragraph is a code sample::
+
+  fn main() {
+    println!("Hello World");
+  }
+
+This is a normal text paragraph again.
+
+List is similar to markdown.
 
 * item 1
 * item 2
+  * item 2.1
+* item 3
 
-Lorem ipsum dolor sit amet, qui minim labore {ref-1}
-adipisicing minim sint cillum sint consectetur cupidatat.
+You can use two way to define a link.
 
-= Reference:
-ref-1: https://github.com/Avimitin/commit-convention
+- By adding an underscore after a word : Github_ and by adding the target URL
+after the text.
+- By making a more Markdown-like link: `Github <https://github.com/Avimitin/commit-convention>`_
+
+Reference
+---------
+.. _GitHub: https://github.com/Avimitin/commit-convention
 ....
 [pass]
 </details>
@@ -221,31 +196,35 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 
 == Full Example
 
-----
-popup/push: !fix action push elsewhere
+....
+fix!:popup/push: fix action push elsewhere
 
-= Major fixes
+Major fixes
+===========
+
 First of all, the push elsewhere action fail to refresh pop up status.
-This is because it didn't pass the `popup` variable.
+This is because it didn't pass the ``popup`` variable.
 
-Secondly, the `git.branch.prompt_for_branch()` function needs a list of
+Secondly, the ``git.branch.prompt_for_branch()`` function needs a list of
 branches to test if arguments are contained in options.
 But the original code just calls it without any arguments.
-So I provide `git.branch.get_all_branches()` to generate necessary
+So I provide ``git.branch.get_all_branches()`` to generate necessary
 arguments.
 
-Besides, I truncate the unexpected git branch in commit {commit-link}.
+Besides, I truncate the unexpected git branch in commit 12f831669_.
 
-= BREAKING CHANGE:
+BREAKING CHANGE
+----------------
 * git.branch.get_local_branches is now private
 
 Fixes: #233
 
-= Reference
-commit-link: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
+Reference
+---------
+.. _12f8e1669: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin <avimitin@gmail.com>
-----
+....
 
 == Template usage
 
