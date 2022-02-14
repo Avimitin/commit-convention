@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.4.0</title>
+<title>Avimitin&#8217;s Commit Convention 0.4.1</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.4.0</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.4.1</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -666,11 +666,11 @@ section. See the section "Full Example" for details.</p>
 <div class="sect2">
 <h3 id="_recommend_format">3.2. Recommend format</h3>
 <div class="paragraph">
-<p>I recommend using the restructured text format.
-It is a powerful markup language.</p>
+<p>I recommend using the restructured text format.</p>
 </div>
 <div class="paragraph">
-<p>My daily practice are listed below:</p>
+<p>My daily practice are listed below, I reduce the complexity for the literal
+marker `\`:</p>
 </div>
 <details>
 <summary>Click to expand!</summary>
@@ -680,7 +680,7 @@ It is a powerful markup language.</p>
 =======
 
 You can put text in *italic* or in **bold**,
-you can "mark" text as code with double backquote ``println!()``.
+you can "mark" text as code with double backquote `println!()`.
 
 Literal code blocks (ref) are introduced by ending a paragraph with the special marker ::.
 The literal block must be indented (and, like all paragraphs, separated from the surrounding
@@ -756,12 +756,12 @@ Major fixes
 ===========
 
 First of all, the push elsewhere action fail to refresh pop up status.
-This is because it didn't pass the ``popup`` variable.
+This is because it didn't pass the `popup` variable.
 
-Secondly, the ``git.branch.prompt_for_branch()`` function needs a list of
+Secondly, the `git.branch.prompt_for_branch()` function needs a list of
 branches to test if arguments are contained in options.
 But the original code just calls it without any arguments.
-So I provide ``git.branch.get_all_branches()`` to generate necessary
+So I provide `git.branch.get_all_branches()` to generate necessary
 arguments.
 
 Besides, I truncate the unexpected git branch in commit 12f831669_.
@@ -839,7 +839,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-14 09:50:04 +0800
+Last updated 2022-02-14 09:56:55 +0800
 </div>
 </div>
 </body>

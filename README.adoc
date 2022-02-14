@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.4.0
+:version: 0.4.1
 :sectnums:
 :toc: left
 // cite
@@ -126,9 +126,9 @@ section. See the section "Full Example" for details.
 === Recommend format
 
 I recommend using the restructured text format.
-It is a powerful markup language.
 
-My daily practice are listed below:
+My daily practice are listed below, I reduce the complexity for the literal
+marker \`\`:
 
 [pass]
 <details>
@@ -138,7 +138,7 @@ Section
 =======
 
 You can put text in *italic* or in **bold**,
-you can "mark" text as code with double backquote ``println!()``.
+you can "mark" text as code with double backquote `println!()`.
 
 Literal code blocks (ref) are introduced by ending a paragraph with the special marker ::. 
 The literal block must be indented (and, like all paragraphs, separated from the surrounding
@@ -203,12 +203,12 @@ Major fixes
 ===========
 
 First of all, the push elsewhere action fail to refresh pop up status.
-This is because it didn't pass the ``popup`` variable.
+This is because it didn't pass the `popup` variable.
 
-Secondly, the ``git.branch.prompt_for_branch()`` function needs a list of
+Secondly, the `git.branch.prompt_for_branch()` function needs a list of
 branches to test if arguments are contained in options.
 But the original code just calls it without any arguments.
-So I provide ``git.branch.get_all_branches()`` to generate necessary
+So I provide `git.branch.get_all_branches()` to generate necessary
 arguments.
 
 Besides, I truncate the unexpected git branch in commit 12f831669_.
