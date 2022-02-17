@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.4.1
+:version: 0.5.0
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Too long didn't read
 
 ----
-<type>[!]:[:module:] <summary>
+<type>[!'][:module:] <summary>
 
 [body]
 
@@ -27,30 +27,32 @@ Component in `[]` means optional, other are required.
 This is similar to the {cclink}[Conventional Commits 1.0.0], but it trim
 the long commit type.
 I don't want the "refactor(scope)" text or other type text ocupy so much space.
-So my decision is to embed type into summary.
+Also I want to align all the type. So here is the result.
 
-* For a new feature, please use "feat" type.
-* For fixes, please use "fix" type.
-* For normal change, please use "reft" type. (It means refactor)
-* For document, please use "docs" type.
-* For miscellaneous work that not affect to code, please use "misc" type.
-* For breaking change, attach a bang sign "!" before the summary.
+* Type "N", stands for new, used when you implement new features.
+* Type "F", stands for fix, used when you fix some unexpected behavior.
+* Type "R", stands for refactor, used when you modify the code.
+* Type "D", stands for document, used when you update code comment, readme, or
+any other document.
+* Type "C", stands for chores, used when you update CI workflow, update format
+file or do any other miscellaneous works.
+* Use "!" instead of space when you are making breaking changes.
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
-feat::socket: implement new API `read()`
-reft::buffer: rewrite the `write_buf()` function
-fix::io/net: fix CVE-2021-9999
-docs::readme: add guideline for using docker build
+N'socket: implement new API `read()`
+R'buffer: rewrite the `write_buf()` function
+F'io/net: fix CVE-2021-9999
+D'readme: add guideline for using docker build
 
 # breaking change
-reft!:lib/crypto: remove the SHA-1 library support
+R!lib/crypto: remove the SHA-1 library support
 
 # module name can be ignored
-feat: implement new module parser
-misc: run code format process
+N: implement new module parser
+C: run code format process
 ----
 
 ''''''

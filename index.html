@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="author" content="Avimitin">
-<title>Avimitin&#8217;s Commit Convention 0.4.1</title>
+<title>Avimitin&#8217;s Commit Convention 0.5.0</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -439,7 +439,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Avimitin&#8217;s Commit Convention 0.4.1</h1>
+<h1>Avimitin&#8217;s Commit Convention 0.5.0</h1>
 <div class="details">
 <span id="author" class="author">Avimitin</span><br>
 <span id="email" class="email"><a href="mailto:avimitin@gmail.com">avimitin@gmail.com</a></span><br>
@@ -484,7 +484,7 @@ version marker.</p>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>&lt;type&gt;[!]:[:module:] &lt;summary&gt;
+<pre>&lt;type&gt;[!'][:module:] &lt;summary&gt;
 
 [body]
 
@@ -498,27 +498,29 @@ version marker.</p>
 <p>This is similar to the <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits 1.0.0</a>, but it trim
 the long commit type.
 I don&#8217;t want the "refactor(scope)" text or other type text ocupy so much space.
-So my decision is to embed type into summary.</p>
+Also I want to align all the type. So here is the result.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>For a new feature, please use "feat" type.</p>
+<p>Type "N", stands for new, used when you implement new features.</p>
 </li>
 <li>
-<p>For fixes, please use "fix" type.</p>
+<p>Type "F", stands for fix, used when you fix some unexpected behavior.</p>
 </li>
 <li>
-<p>For normal change, please use "reft" type. (It means refactor)</p>
+<p>Type "R", stands for refactor, used when you modify the code.</p>
 </li>
 <li>
-<p>For document, please use "docs" type.</p>
+<p>Type "D", stands for document, used when you update code comment, readme, or
+any other document.</p>
 </li>
 <li>
-<p>For miscellaneous work that not affect to code, please use "misc" type.</p>
+<p>Type "C", stands for chores, used when you update CI workflow, update format
+file or do any other miscellaneous works.</p>
 </li>
 <li>
-<p>For breaking change, attach a bang sign "!" before the summary.</p>
+<p>Use "!" instead of space when you are making breaking changes.</p>
 </li>
 </ul>
 </div>
@@ -528,17 +530,17 @@ So my decision is to embed type into summary.</p>
 <div class="listingblock">
 <div class="title">Example</div>
 <div class="content">
-<pre>feat::socket: implement new API `read()`
-reft::buffer: rewrite the `write_buf()` function
-fix::io/net: fix CVE-2021-9999
-docs::readme: add guideline for using docker build
+<pre>N'socket: implement new API `read()`
+R'buffer: rewrite the `write_buf()` function
+F'io/net: fix CVE-2021-9999
+D'readme: add guideline for using docker build
 
 # breaking change
-reft!:lib/crypto: remove the SHA-1 library support
+R!lib/crypto: remove the SHA-1 library support
 
 # module name can be ignored
-feat: implement new module parser
-misc: run code format process</pre>
+N: implement new module parser
+C: run code format process</pre>
 </div>
 </div>
 <hr>
@@ -839,7 +841,7 @@ git config --global commit.template $PWD/commit-convention/template.txt</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-14 09:56:55 +0800
+Last updated 2022-02-17 19:56:12 +0800
 </div>
 </div>
 </body>
