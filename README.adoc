@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.5.0
+:version: 0.5.1
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Too long didn't read
 
 ----
-<type>[!'][:module:] <summary>
+<type>[!'][module:] <summary>
 
 [body]
 
@@ -127,10 +127,8 @@ section. See the section "Full Example" for details.
 
 === Recommend format
 
-I recommend using the restructured text format.
-
-My daily practice are listed below, I reduce the complexity for the literal
-marker \`\`:
+My daily practice are listed below. It is a mix of markdown, restructure text,
+and Rust document.
 
 [pass]
 <details>
@@ -139,14 +137,13 @@ marker \`\`:
 Section
 =======
 
-You can put text in *italic* or in **bold**,
+You can put text in in *bold*,
 you can "mark" text as code with double backquote `println!()`.
 
-Literal code blocks (ref) are introduced by ending a paragraph with the special marker ::. 
-The literal block must be indented (and, like all paragraphs, separated from the surrounding
-ones by blank lines):
+Literal code blocks (ref) are introduced by indented, and, like all paragraphs,
+separated from the surrounding ones by blank lines):
 
-This is a normal text paragraph. The next paragraph is a code sample::
+This is a normal text paragraph. The next paragraph is a code sample:
 
   fn main() {
     println!("Hello World");
@@ -154,22 +151,16 @@ This is a normal text paragraph. The next paragraph is a code sample::
 
 This is a normal text paragraph again.
 
-List is similar to markdown.
+List can be nested.
 
 * item 1
 * item 2
   * item 2.1
 * item 3
 
-You can use two way to define a link.
+You can use Rust way to define a reference link: [GitHub].
 
-- By adding an underscore after a word : Github_ and by adding the target URL
-after the text.
-- By making a more Markdown-like link: `Github <https://github.com/Avimitin/commit-convention>`_
-
-Reference
----------
-.. _GitHub: https://github.com/Avimitin/commit-convention
+[GitHub]: https://github.com/Avimitin/commit-convention
 ....
 [pass]
 </details>
