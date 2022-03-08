@@ -1,7 +1,7 @@
 = Avimitin's Commit Convention {version}
 Avimitin <avimitin@gmail.com>
 // attr
-:version: 0.5.1
+:version: 0.6.0
 :sectnums:
 :toc: left
 // cite
@@ -15,7 +15,7 @@ version marker.
 == Too long didn't read
 
 ----
-<type>[!'][module:] <summary>
+type[.|!] module: summary
 
 [body]
 
@@ -34,25 +34,21 @@ Also I want to align all the type. So here is the result.
 * Type "R", stands for refactor, used when you modify the code.
 * Type "D", stands for document, used when you update code comment, readme, or
 any other document.
-* Type "C", stands for chores, used when you update CI workflow, update format
+* Type "M", stands for miscellaneous, used when you update CI workflow, update format
 file or do any other miscellaneous works.
-* Use "!" instead of space when you are making breaking changes.
+* Use "!" instead of "." when you are making breaking changes.
 
 So after this new design, the commit message will be like:
 
 .Example
 ----
-N'socket: implement new API `read()`
-R'buffer: rewrite the `write_buf()` function
-F'io/net: fix CVE-2021-9999
-D'readme: add guideline for using docker build
+N. socket: implement new API `read()`
+R. buffer: rewrite the `write_buf()` function
+F. io/net: fix CVE-2021-9999
+D. readme: add guideline for using docker build
 
 # breaking change
-R!lib/crypto: remove the SHA-1 library support
-
-# module name can be ignored
-N: implement new module parser
-C: run code format process
+R! lib/crypto: remove the SHA-1 library support
 ----
 
 ''''''
@@ -138,7 +134,8 @@ Section
 =======
 
 You can put text in in *bold*,
-you can "mark" text as code with double backquote `println!()`.
+
+You can mark text as code with double backquote `println!()`.
 
 Literal code blocks (ref) are introduced by indented, and, like all paragraphs,
 separated from the surrounding ones by blank lines):
@@ -190,7 +187,7 @@ of the rooter like: "Signed-off-by: Yourname <\name@example.com>".
 == Full Example
 
 ....
-fix!:popup/push: fix action push elsewhere
+fix! popup/push: fix action push elsewhere
 
 Major fixes
 ===========
@@ -204,7 +201,7 @@ But the original code just calls it without any arguments.
 So I provide `git.branch.get_all_branches()` to generate necessary
 arguments.
 
-Besides, I truncate the unexpected git branch in commit 12f831669_.
+Besides, I truncate the unexpected git branch in [commit 12f831669].
 
 BREAKING CHANGE
 ----------------
@@ -214,7 +211,7 @@ Fixes: #233
 
 Reference
 ---------
-.. _12f8e1669: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
+[commit 12f8e1669]: https://github.com/user/project/commit/12f8e166965e8b706d3b54876f92d3e6052f5c84
 
 Signed-off-by: Avimitin <avimitin@gmail.com>
 ....
