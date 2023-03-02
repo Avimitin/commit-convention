@@ -5,7 +5,7 @@
 #^^^^^^^^^^ [BODY] wrap in 72 chars ---------------------------------->:
 
 # [Footer]: Include Co-authored-by for all contributors
-Signed-off-by: Avimitin <avimitin@gmail.com>
+Signed-off-by: Avimitin <dev@avimit.in>
 #
 # !!! DO NOT DELETE THE LINE BETWEEN TITLE AND BODY !!!
 #
