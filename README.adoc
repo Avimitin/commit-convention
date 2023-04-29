@@ -242,6 +242,6 @@ This convention is inspired by the below project:
 
 https://creativecommons.org/licenses/by/4.0/[CC-BY-4.0]
 
-(c) 2021 Avimitin
+(c) 2023 Avimitin
 
 // vim: tw=80 fo+=t
